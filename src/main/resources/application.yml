@@ -1,0 +1,155 @@
+### server config
+server:
+  servlet:
+    context-path: /choco
+  port: '38080'
+  my:
+    address: http://localhost:${server.port}${server.servlet.context-path}
+
+### spring config
+spring:
+## 내장 웹서버 사용 설정
+  main:
+    web-application-type: servlet
+  application:
+    name: chocosong_template
+  devtools:
+    livereload:
+      enabled: 'false'
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+## task scheduling info
+  task:
+    scheduling:
+      pool-size: '5'
+      thread-name-prefix: ccs-scheduler-
+## db mapping
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: 'true'
+## redis config
+  redis:
+    host: 192.168.0.107
+    port: '6379'
+    channel: channel_a
+    msg-ide: cccA,cccB
+## admin server config
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://192.168.0.105:9999/adminServer
+        auto-registration: true
+        instance:
+          name: ${spring.application.name}
+          service-url: ${server.my.address}
+  jmx:
+    enabled: true
+
+### admin server management config
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+### db info
+db:
+## base Database Connection
+  base:
+    driver: org.postgresql.Driver
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    url: jdbc:postgresql://show.ziumks.com:35432/Export20F
+    username: rino
+    password: rinoadmin
+    schema: asp
+    showSql: 'false'
+    ddlAuto: none
+    maxPoolSize: '5'
+## target Database Connection - Mysql
+  target:
+    driver: com.mysql.cj.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQLDialect
+    url: jdbc:mysql://192.168.0.106:3306/airforce_dashboard
+    username: zium
+    password: Ziumks1196!
+    schema: airforce_dashboard
+    showSql: 'false'
+    ddlAuto: none
+    maxPoolSize: '5'
+
+### SpringDoc config
+springdoc:
+  default-produces-media-type: application/json;charset=UTF-8
+  default-consumes-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /swagger
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: 'true'
+  cache:
+    disabled: 'true'
+
+### common common server config
+common:
+  api:
+    bulk:
+      protocol: http
+      host: 192.168.0.105
+      port: 10300
+      url: ${common.api.bulk.protocol}://${common.api.bulk.host}:${common.api.bulk.port}/air/bulk
+    ba-dda:
+      protocol: http
+      host: 192.168.0.105
+      port: 10900
+      url: ${common.api.ba-dda.protocol}://${common.api.ba-dda.host}:${common.api.ba-dda.port}/sys
+    widget:
+      protocol: http
+      host: 192.168.0.105
+      port: 11420
+      url: ${common.api.widget.protocol}://${common.api.widget.host}:${common.api.widget.port}/widget/events/regist
+
+### widget event config
+## event_id = clientCd-siteCd-{zncd}{themecd}{unitsvccd}{gbcd}{evetcd}
+## ex) ESE-10000001-000EAS001E04
+widget:
+  event:
+## 클라이언트 코드
+    client-cd: ESE
+## 사이트 코드
+    site-cd: 10000001
+    evet-gb-cd: E
+    outb-main-gb: P
+    stat-evet-cd: 01
+## 이벤트 발생 문구 -2
+    stat-evet-cntn: 시정 {param} 기준치 이하로 발생하여 저시정 경보 발령 상태 입니다.
+## 이벤트 발생 문구 - 1
+    stat-evet-nm: 저시정 발생
+## 이벤트 등급
+    stat-evet-gd-cd: 90
+## 서비스 테마 코드
+    svc-theme-cd: AOS
+## 단위 서비스 코드
+    unit-svc-cd: 300
+## 좌표 경도
+    x-coordinate: 127.1125937
+## 좌표 위도
+    y-coordinate: 37.444897
+    z-coordinate: 0
+    zn-cd: 000
+## 이벤트 발생 지역
+    outb-plac: 테스트 비행단
+
+
+##################################################################
