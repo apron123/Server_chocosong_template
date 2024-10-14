@@ -30,7 +30,7 @@ spring:
       use-new-id-generator-mappings: 'true'
 ## redis config
   redis:
-    host: 192.168.0.107
+    host: localhost
     port: '6379'
     channel: channel_a
     msg-ide: cccA,cccB
@@ -39,7 +39,7 @@ spring:
     admin:
       client:
         enabled: true
-        url: http://192.168.0.105:9999/adminServer
+        url: http://localhost:9999/adminServer
         auto-registration: true
         instance:
           name: ${spring.application.name}
@@ -67,7 +67,7 @@ db:
   base:
     driver: org.postgresql.Driver
     dialect: org.hibernate.dialect.PostgreSQLDialect
-    url: jdbc:postgresql://show.ziumks.com:35432/Export20F
+    url: jdbc:postgresql://localhost:35432/Export20F
     username: rino
     password: rinoadmin
     schema: asp
@@ -78,7 +78,7 @@ db:
   target:
     driver: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQLDialect
-    url: jdbc:mysql://192.168.0.106:3306/airforce_dashboard
+    url: jdbc:mysql://localhost:3306/airforce_dashboard
     username: zium
     password: Ziumks1196!
     schema: airforce_dashboard
@@ -106,17 +106,17 @@ common:
   api:
     bulk:
       protocol: http
-      host: 192.168.0.105
+      host: localhost
       port: 10300
       url: ${common.api.bulk.protocol}://${common.api.bulk.host}:${common.api.bulk.port}/air/bulk
     ba-dda:
       protocol: http
-      host: 192.168.0.105
+      host: localhost
       port: 10900
       url: ${common.api.ba-dda.protocol}://${common.api.ba-dda.host}:${common.api.ba-dda.port}/sys
     widget:
       protocol: http
-      host: 192.168.0.105
+      host: localhost
       port: 11420
       url: ${common.api.widget.protocol}://${common.api.widget.host}:${common.api.widget.port}/widget/events/regist
 
