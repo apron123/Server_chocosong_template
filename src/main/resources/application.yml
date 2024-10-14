@@ -68,9 +68,9 @@ db:
     driver: org.postgresql.Driver
     dialect: org.hibernate.dialect.PostgreSQLDialect
     url: jdbc:postgresql://localhost:35432/Export20F
-    username: rino
-    password: rinoadmin
-    schema: asp
+    username: 1234
+    password: 1234
+    schema: test
     showSql: 'false'
     ddlAuto: none
     maxPoolSize: '5'
@@ -79,9 +79,9 @@ db:
     driver: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQLDialect
     url: jdbc:mysql://localhost:3306/airforce_dashboard
-    username: zium
-    password: Ziumks1196!
-    schema: airforce_dashboard
+    username: 1234
+    password: 1234
+    schema: test
     showSql: 'false'
     ddlAuto: none
     maxPoolSize: '5'
